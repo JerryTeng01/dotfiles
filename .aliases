@@ -1,0 +1,13 @@
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias python='/usr/bin/python3.8'
+alias vpn='globalprotect launch-ui'
+alias ctf='ssh zxt180005@ctf-vm1.utdallas.edu -J zxt180005@pubssh.utdallas.edu'
+alias ghidra='/opt/ghidra/ghidraRun && exit'
+alias vimconfig='vim ~/.vimrc'
+alias 4301='cd /home/jerryteng/Desktop/classes/4301'
+alias 4347='cd /home/jerryteng/Desktop/classes/4347'
+alias 4348='cd /home/jerryteng/Desktop/classes/4348'
+alias 4390='cd /home/jerryteng/Desktop/classes/4390'
+alias pctf='ssh zxt180005@ctf-vm1.syssec.run -p 2221'
+
