@@ -1,0 +1,11 @@
+copyfiles() {
+    scp -r $@  zxt180005@pubssh.utdallas.edu:/home/013/z/zx/zxt180005
+}
+
+copyfromctf() {
+    scp -r -P 2221 zxt180005@ctf-vm1.syssec.run:/home/zxt180005/$1 /home/jerryteng/Desktop/classes/4301
+}
+
+copytoctf() {
+    scp -r -P 2221 $1 zxt180005@ctf-vm1.syssec.run:/home/zxt180005
+}

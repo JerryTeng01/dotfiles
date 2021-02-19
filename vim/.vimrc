@@ -10,6 +10,7 @@ Plug 'tpope/vim-sensible'
 Plug 'wakatime/vim-wakatime'
 Plug 'franbach/miramare'
 Plug 'sheerun/vim-polyglot'
+Plug 'hugolgst/vimsence'
 
 call plug#end()
 
