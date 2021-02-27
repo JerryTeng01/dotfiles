@@ -1,13 +1,16 @@
 DEFAULT_USER=jerryteng
-export ZSH="/home/jerryteng/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="agnoster"
 ENABLE_CORRECTION="true"
-plugins=(git)
+plugins=(
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
 source $ZSH/oh-my-zsh.sh
 
 source /usr/bin/bash-wakatime/bash-wakatime.sh
 
-alias mon2cam="deno run --unstable -A -r -q https://raw.githubusercontent.com/ShayBox/Mon2Cam/master/src/mod.ts"
-
-[ -f ~/.aliases ] && source ~/.aliases
-[ -f ~/.functions ] && source ~/.functions
+#[ -f ~/.aliases ] && source ~/.aliases
+#[ -f ~/.funs ] && source ~/.funs
+#[ -f ~/.git_aliases ] && source ~/.git_aliases

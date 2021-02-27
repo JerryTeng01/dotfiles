@@ -1,3 +1,7 @@
 [user]
 	name = Jerry Teng
 	email = zuyuangteng@gmail.com
+[commit]
+	template = /home/jerryteng/.gitmessage
+[core]
+	editor = vim
