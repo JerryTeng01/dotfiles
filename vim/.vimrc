@@ -24,6 +24,7 @@ let g:airline_theme = 'miramare'
 colorscheme miramare
 
 set number
+set relativenumber
 syntax enable
 set tabstop=4
 set autoindent

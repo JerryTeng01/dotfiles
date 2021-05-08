@@ -1,5 +1,4 @@
 alias zshconfig="vim ~/.zshrc"
-alias python='/usr/bin/python3.8'
 alias vpn='globalprotect launch-ui'
 alias ctf='ssh zxt180005@ctf-vm1.utdallas.edu -J zxt180005@pubssh.utdallas.edu'
 alias ghidra='/opt/ghidra/ghidraRun && exit'
