@@ -35,3 +35,5 @@ set showmatch
 set nobackup
 set swapfile
 set dir=/tmp
+set visualbell
+set t_vb=
