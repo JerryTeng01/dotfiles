@@ -1,2 +1,2 @@
-source ~/.gdbinit-gef.py
+# source ~/.gdbinit-gef.py
 set disassembly-flavor intel	

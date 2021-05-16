@@ -1,3 +1,4 @@
+" install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -6,11 +7,10 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-sensible'
 Plug 'wakatime/vim-wakatime'
 Plug 'franbach/miramare'
 Plug 'sheerun/vim-polyglot'
-Plug 'hugolgst/vimsence'
+Plug 'vimsence/vimsence'
 
 call plug#end()
 
@@ -23,16 +23,17 @@ let g:airline_theme = 'miramare'
 
 colorscheme miramare
 
-set number
+set nu rnu
+set clipboard=unnamed
+set ts=4 sw=4 sts=4 et
 syntax enable
-set tabstop=4
 set autoindent
-set expandtab
-set softtabstop=4
 set cursorline
 set showmatch
 set nobackup
 set swapfile
 set dir=/tmp
+set noeol
 set visualbell
 set t_vb=
+

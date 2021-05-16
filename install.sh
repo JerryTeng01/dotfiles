@@ -1,19 +1,30 @@
 #!/bin/bash
 
-# vim symlinks
-ln -sf $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
+if [ ! -d ~/.oh-my-zsh ]; then
+    curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+fi
 
-# git symlinks
-ln -sf $HOME/dotfiles/git/.gitconfig $HOME/.gitconfig
-ln -sf $HOME/dotfiles/git/.git_aliases $HOME/.git_aliases
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
 
-# shell symlinks
-ln -sf $HOME/dotfiles/shells/.aliases $HOME/.aliases
-ln -sf $HOME/dotfiles/shells/.zshrc $HOME/.zshrc
-ln -sf $HOME/dotfiles/shells/.funs $HOME/.funs
-ln -sf $HOME/dotfiles/shells/.aliases $HOME/.aliases
-ln -sf $HOME/dotfiles/shells/.profile $HOME/.profile
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
 
-# gdb symlinks
-ln -sf $HOME/dotfiles/gdb/.gdbinit $HOME/.gdbinit
+# vim
+ln -sf $HOME/dotfiles/.vimrc ~
+
+# git 
+ln -sf $HOME/dotfiles/.gitconfig ~
+ln -sf $HOME/dotfiles/.git_aliases ~
+
+# shell 
+ln -sf $HOME/dotfiles/.zshrc ~
+ln -sf $HOME/dotfiles/.functions ~
+ln -sf $HOME/dotfiles/.aliases ~
+ln -sf $HOME/dotfiles/.profile ~
+
+# gdb 
+ln -sf $HOME/dotfiles/.gdbinit ~
 

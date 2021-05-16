@@ -1,3 +1,0 @@
-alias startgit='cd `git rev-parse --show-toplevel` && git checkout master && git pull'
-alias cg='cd `git rev-parse --show-toplevel`'
-
