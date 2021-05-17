@@ -10,18 +10,32 @@ Plug 'wakatime/vim-wakatime'
 Plug 'sheerun/vim-polyglot'
 Plug 'ghifarit53/tokyonight-vim'
 "Plug 'vimsence/vimsence'
+Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/goyo.vim'
+Plug 'frazrepo/vim-rainbow'
+Plug 'vim-airline/vim-airline'
+Plug 'dense-analysis/ale'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
-set termguicolors
+syntax enable
 
-let g:tokyonight_style = 'night'
-let g:tokyonight_enable_italic = 1
-let g:airline_theme = "tokyonight"
+"set termguicolors
+"let g:tokyonight_style = 'night'
+"let g:tokyonight_enable_italic = 1
+"let g:airline_theme = "tokyonight"
 
-colorscheme tokyonight
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+let g:rainbow_active = 1
 
 set nu rnu
+set autoindent
+set smartindent
 set clipboard=unnamed
 set ts=4 sw=4 sts=4 et
 syntax enable
@@ -32,6 +46,6 @@ set nobackup
 set swapfile
 set dir=/tmp
 set noeol
-"set visualbell
-"set t_vb=
+set visualbell
+set t_vb=
 
