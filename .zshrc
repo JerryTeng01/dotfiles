@@ -13,9 +13,9 @@ bindkey -v
 
 source $ZSH/oh-my-zsh.sh
 
-files=(".aliases", ".functions", ".gdbinit", ".profile")
+files=(".aliases" ".functions" ".gdbinit" ".profile")
 
-for file in $files; do
+for file in ${files[@]}; do
     source $file 2> /dev/null
 done
 

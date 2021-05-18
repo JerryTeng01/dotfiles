@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if [ ! -d ~/.oh-my-zsh ]; then
     curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 fi
@@ -12,19 +10,17 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
-# vim
-ln -sf $HOME/dotfiles/.vimrc ~
+files=(".aliases" ".functions" ".gdbinit" ".gitconfig" ".git_aliases" ".profile" ".vimrc" ".zshrc")
 
-# git 
-ln -sf $HOME/dotfiles/.gitconfig ~
-ln -sf $HOME/dotfiles/.git_aliases ~
+for file in ${files[@]}; do
+    ln -sf $(pwd)/$file $HOME
+done
 
-# shell 
-ln -sf $HOME/dotfiles/.zshrc ~
-ln -sf $HOME/dotfiles/.functions ~
-ln -sf $HOME/dotfiles/.aliases ~
-ln -sf $HOME/dotfiles/.profile ~
+[ ! -d $HOME/.config ] && mkdir $HOME/.config
 
-# gdb 
-ln -sf $HOME/dotfiles/.gdbinit ~
+[ -d $HOME/.config/alacritty ] && rm -fr $HOME/.config/alacritty
+ln -sf config/alacritty $HOME/.config/alacritty
+
+[ -d $HOME/.config/qtile ] && rm -fr $HOME/.config/qtile
+ln -sf config/qtile $HOME/.config/qtile
 
