@@ -19,8 +19,14 @@ done
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
 
 [ -d $HOME/.config/alacritty ] && rm -fr $HOME/.config/alacritty
-ln -sf config/alacritty $HOME/.config/alacritty
+ln -sf $(pwd)/config/alacritty $HOME/.config/alacritty
+
+[ -d $HOME/.config/nitrogen ] && rm -fr $HOME/.config/nitrogen
+ln -sf $(pwd)/config/nitrogen $HOME/.config/nitrogen
+
+[ -d $HOME/.config/picom ] && rm -fr $HOME/.config/picom
+ln -sf $(pwd)/config/picom $HOME/.config/picom
 
 [ -d $HOME/.config/qtile ] && rm -fr $HOME/.config/qtile
-ln -sf config/qtile $HOME/.config/qtile
+ln -sf $(pwd)/config/qtile $HOME/.config/qtile
 

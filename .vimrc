@@ -12,6 +12,7 @@ Plug 'vimsence/vimsence'
 Plug 'junegunn/goyo.vim'
 Plug 'frazrepo/vim-rainbow'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
@@ -26,6 +27,7 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme gruvbox
 
+let g:airline_theme='solarized'
 let g:rainbow_active = 1
 
 set nu "rnu

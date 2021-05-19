@@ -1,4 +1,3 @@
-cd ~
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="lambda"
 #ZSH_THEME="muse"
@@ -16,6 +15,6 @@ source $ZSH/oh-my-zsh.sh
 files=(".aliases" ".functions" ".gdbinit" ".profile")
 
 for file in ${files[@]}; do
-    source $file 2> /dev/null
+    source $HOME/$file 2> /dev/null
 done
 
