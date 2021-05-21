@@ -1,3 +1,4 @@
 #!/bin/bash
 nitrogen --restore &
-#picom -b
+picom --experimental-backends -b
+vmware-user &

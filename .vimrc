@@ -43,6 +43,8 @@ set nobackup
 set swapfile
 set dir=/tmp
 set noeol
+set ignorecase
+set smartcase
 set visualbell
 set t_vb=
 

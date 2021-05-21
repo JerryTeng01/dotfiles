@@ -29,13 +29,13 @@ import subprocess
 
 from typing import List  # noqa: F401
 
+from libqtile import qtile
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = "alacritty"
 
 keys = [
     # Switch between windows
@@ -71,8 +71,8 @@ keys = [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
 
-    Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
+    Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "slash", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
@@ -91,16 +91,28 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))        # switch to group i
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name))) # send current window to group i
 
+colors = {
+    "lavender_web": "eeeeff",
+    "old_lavender": "827081",
+    "indian_yellow": "dda448",
+    "eerie_black": "222222"
+}
+
+layout_theme = {
+    "margin": 15,
+    "border_focus": colors["lavender_web"],
+    "border_normal": colors["eerie_black"],
+    "border_width": 2
+}
+
 layouts = [
     layout.Columns(border_focus_stack='#d75f5f'),
-    layout.Max(),
+    layout.Max(**layout_theme),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(
-        margin = 10
-    ),
+    layout.MonadTall(**layout_theme),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -110,9 +122,11 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='sans',
-    fontsize=14,
-    padding=3,
+    font='Ubuntu Bold',
+    fontsize=12,
+    padding=5,
+    background=colors["eerie_black"],
+    foreground=colors["lavender_web"]
 )
 extension_defaults = widget_defaults.copy()
 
@@ -125,12 +139,17 @@ screens = [
                     padding = 10
                 ),
                 widget.GroupBox(
-                    font="Ubuntu Bold",
-                    padding_x = 5,
-                    padding_y = 5,
-                    rounded = False
+                    rounded = True,
+                    disable_drag = True,
+                    borderwidth = 1,
+                    highlight_color = colors["old_lavender"],
+                    highlight_method = "line",
+                    active = colors["indian_yellow"],
+                    inactive = colors["lavender_web"]
                 ),
-                widget.Prompt(),
+                widget.Prompt(
+                    padding = 10
+                ),
                 widget.WindowName(),
                 widget.Chord(
                     chords_colors={
@@ -139,8 +158,17 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.Systray(),
+                widget.CheckUpdates(
+                    update_interval = 10,
+                    no_update_string = "no updates"
+                    #execute = terminal + " -e pacman -Syu",
+                    #display_format = "{updates} Updates"
+                ),
+                widget.Memory(
+                    mouse_callbacks = {"Button1": lambda: qtile.cmd_spawn(terminal + " -e htop")}
+                ),
                 widget.Clock(
-                    format="%A, %B %d - %H:%I"
+                    format="%A, %B %d - %-I:%M %p"
                 ),
             ],
             24,
