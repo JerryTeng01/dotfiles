@@ -159,10 +159,9 @@ screens = [
                 ),
                 widget.Systray(),
                 widget.CheckUpdates(
-                    update_interval = 10,
-                    no_update_string = "no updates"
-                    #execute = terminal + " -e pacman -Syu",
-                    #display_format = "{updates} Updates"
+                    update_interval = 3600,
+                    execute = terminal + " -e sudo pacman -Syu",
+                    display_format = "{updates} Updates"
                 ),
                 widget.Memory(
                     mouse_callbacks = {"Button1": lambda: qtile.cmd_spawn(terminal + " -e htop")}
