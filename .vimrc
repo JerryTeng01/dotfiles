@@ -1,42 +1,29 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
+" plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'wakatime/vim-wakatime'
-Plug 'sheerun/vim-polyglot'
 Plug 'vimsence/vimsence'
-Plug 'junegunn/goyo.vim'
 Plug 'frazrepo/vim-rainbow'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'dense-analysis/ale'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-syntastic/syntastic'
-Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
-Plug 'preservim/nerdtree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
-syntax enable
-
+" colors
+set t_Co=256
 set background=dark
-let g:solarized_termcolors=256
 colorscheme gruvbox
 
-let g:airline_theme='solarized'
 let g:rainbow_active = 1
 
+" options
 set nu "rnu
 set autoindent
 set smartindent
 set clipboard=unnamed
 set ts=4 sw=4 sts=4 et
-syntax enable
+syntax on
 set autoindent
 set cursorline
 set showmatch
@@ -48,5 +35,4 @@ set ignorecase
 set smartcase
 set visualbell
 set t_vb=
-
-inoremap {<CR> {<CR>}<C-o>O
+filetype indent plugin on
