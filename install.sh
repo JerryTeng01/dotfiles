@@ -1,3 +1,36 @@
+#!/bin/sh
+
+declare -A os;
+os[/etc/debian_version]="apt-get install -y"
+os[/etc/arch-release]="pacman -S"
+
+for v in ${!os[@]}
+do
+    if [[ -f $v ]]; then
+        package_manager=${os[$v]}
+    fi
+done
+
+packages=(
+    git 
+    gdb
+    figlet
+    alacritty
+    picom
+    nitrogen
+    qtile
+)
+
+${package_manager} ${packages[@]}
+
+# additional tools for binaries
+pip3 install capstone unicorn keystone-engine ropper
+
+# gef
+if [ ! -f !/.gdbinit-gef.py ]; then
+    wget -O ~/.gdbinit-gef.py -q https://github.com/hugsy/gef/raw/master/gef.py
+fi
+
 if [ ! -d ~/.oh-my-zsh ]; then
     curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 fi
@@ -10,13 +43,27 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
-files=(".aliases" ".functions" ".gdbinit" ".gitconfig" ".git_aliases" ".profile" ".vimrc" ".zshrc")
+files=(
+    ".aliases" 
+    ".functions" 
+    ".gdbinit" 
+    ".gitconfig" 
+    ".git_aliases" 
+    ".zshenv" 
+    ".vimrc" 
+    ".xinitrc"
+    ".zshrc"
+)
 
 for file in ${files[@]}; do
     ln -sf $(pwd)/$file $HOME
 done
 
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
+
+ln -sf $(pwd)/config/VSCodium/product.json $HOME/.config/VSCodium/product.json
+
+ln -sf $(pwd)/config/VSCodium/User/settings.json $HOME/.config/VSCodium/User/settings.json
 
 [ -d $HOME/.config/alacritty ] && rm -fr $HOME/.config/alacritty
 ln -sf $(pwd)/config/alacritty $HOME/.config/alacritty
@@ -26,6 +73,9 @@ ln -sf $(pwd)/config/nitrogen $HOME/.config/nitrogen
 
 [ -d $HOME/.config/picom ] && rm -fr $HOME/.config/picom
 ln -sf $(pwd)/config/picom $HOME/.config/picom
+
+[ -d $HOME/.config/qtile ] && rm -fr $HOME/.config/qtile
+ln -sf $(pwd)/config/qtile $HOME/.config/qtile
 
 [ -d $HOME/.config/qtile ] && rm -fr $HOME/.config/qtile
 ln -sf $(pwd)/config/qtile $HOME/.config/qtile
