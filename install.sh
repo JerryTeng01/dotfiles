@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 declare -A os;
 os[/etc/debian_version]="apt-get install -y"
