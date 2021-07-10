@@ -73,16 +73,17 @@ keys = [
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "slash", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "slash", lazy.spawn("rofi -theme gruvbox-dark-soft -show drun"), desc="Spawn rofi drun"),
+    Key([mod], "f", lazy.spawn("rofi -theme gruvbox-dark-soft -show file-browser"), desc="Spawn rofi file-browser"),
 
-    Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
+    Key([mod], "b", lazy.spawn("brave"), desc="Launch Brave"),
 ]
 
 group_names = [
-        ("WEB", {'layout': 'monadtall'}),
-        ("DEV", {'layout': 'monadtall'}),
-        ("COM", {'layout': 'monadtall'}),
-        ("MUS", {'layout': 'max'}),
+        ("0", {'layout': 'monadtall'}),
+        ("1", {'layout': 'monadtall'}),
+        ("2", {'layout': 'monadtall'}),
+        ("3", {'layout': 'monadtall'}),
 ]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -99,7 +100,7 @@ colors = {
 }
 
 layout_theme = {
-    "margin": 15,
+    "margin": 10,
     "border_focus": colors["lavender_web"],
     "border_normal": colors["eerie_black"],
     "border_width": 2
@@ -158,11 +159,6 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.Systray(),
-                widget.CheckUpdates(
-                    update_interval = 3600,
-                    execute = terminal + " -e sudo pacman -Syu",
-                    display_format = "{updates} Updates"
-                ),
                 widget.Memory(
                     mouse_callbacks = {"Button1": lambda: qtile.cmd_spawn(terminal + " -e htop")}
                 ),
@@ -216,4 +212,5 @@ def autostart():
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+#wmname = "LG3D"
+wmname = "qtile"
