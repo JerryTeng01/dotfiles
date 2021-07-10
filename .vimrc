@@ -18,6 +18,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
@@ -48,3 +49,4 @@ set smartcase
 set visualbell
 set t_vb=
 
+inoremap {<CR> {<CR>}<C-o>O
