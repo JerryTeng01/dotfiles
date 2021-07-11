@@ -42,3 +42,9 @@ set smartcase
 set visualbell
 set t_vb=
 filetype indent plugin on
+
+" return to last edit place
+if has("autocmd")
+      au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+          \| exe "normal! g'\"" | endif
+  endif

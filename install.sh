@@ -37,9 +37,9 @@ for file in ${files[@]}; do
 done
 
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
+[ ! -d $HOME/.config/VSCodium/User ] && mkdir -p $HOME/.config/VSCodium/User
 
 ln -sf $(pwd)/config/VSCodium/product.json $HOME/.config/VSCodium/product.json
-
 ln -sf $(pwd)/config/VSCodium/User/settings.json $HOME/.config/VSCodium/User/settings.json
 
 [ -d $HOME/.config/alacritty ] && rm -fr $HOME/.config/alacritty
