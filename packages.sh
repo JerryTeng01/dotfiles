@@ -19,6 +19,8 @@ packages=(
     picom
     nitrogen
     qtile
+    python
+    zsh
 )
 
 ${package_manager} ${packages[@]}
