@@ -12,14 +12,14 @@ do
 done
 
 packages=(
-    git 
     gdb
-    figlet
-    alacritty
-    picom
-    nitrogen
-    qtile
+    git 
+    htop
+    neofetch
     python
+    rofi
+    tmux
+    wget
     zsh
 )
 
