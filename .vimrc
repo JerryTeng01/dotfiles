@@ -13,9 +13,9 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 Plug 'tpope/vim-commentary'
-"Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -60,6 +60,6 @@ au BufNewFile,BufRead *.py
 
 " return to last edit place
 if has("autocmd")
-      au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-          \| exe "normal! g'\"" | endif
-  endif
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
