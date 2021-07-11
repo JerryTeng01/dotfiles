@@ -11,8 +11,11 @@ Plug 'wakatime/vim-wakatime'
 Plug 'vimsence/vimsence'
 Plug 'frazrepo/vim-rainbow'
 Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/seoul256.vim'
 Plug 'tpope/vim-commentary'
+"Plug 'sheerun/vim-polyglot'
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -42,6 +45,18 @@ set smartcase
 set visualbell
 set t_vb=
 filetype indent plugin on
+
+" linters
+let g:ale_linters = {'python': ['flake8', 'pylint']}
+
+" python syntax
+au BufNewFile,BufRead *.py
+    \ set expandtab       |" replace tabs with spaces
+    \ set autoindent      |" copy indent when starting a new line
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set foldmethod=indent
 
 " return to last edit place
 if has("autocmd")
