@@ -77,6 +77,7 @@ keys = [
     Key([mod], "f", lazy.spawn("rofi -theme gruvbox-dark-soft -show file-browser"), desc="Spawn rofi file-browser"),
 
     Key([mod], "b", lazy.spawn("brave"), desc="Launch Brave"),
+    Key([mod], "n", lazy.spawn("brave --incognito"), desc="Launch Brave"),
 ]
 
 group_names = [
