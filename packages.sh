@@ -22,6 +22,7 @@ packages=(
     wget
     vim
     zsh
+    node
 )
 
 ${package_manager} ${packages[@]}

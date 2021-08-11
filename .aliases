@@ -8,4 +8,6 @@ alias va='source ./venv/bin/activate'
 alias gdb='gdb -q'
 alias ipython='python3 -m IPython'
 alias code='codium'
-
+alias hc='hashcat'
+alias ms='msfconsole -q'
+alias hashid='python3 ~/tools/hash-id.py'

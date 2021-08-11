@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'wakatime/vim-wakatime'
-Plug 'vimsence/vimsence'
 Plug 'frazrepo/vim-rainbow'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
