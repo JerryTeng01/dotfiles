@@ -20,6 +20,7 @@ packages=(
     rofi
     tmux
     wget
+    vim
     zsh
 )
 

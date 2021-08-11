@@ -36,6 +36,8 @@ for file in ${files[@]}; do
     ln -sf $(pwd)/$file $HOME
 done
 
+[ ! -d $HOME/.vim/undodir ] && mkdir $HOME/.vim/undodir
+
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
 [ ! -d $HOME/.config/VSCodium/User ] && mkdir -p $HOME/.config/VSCodium/User
 

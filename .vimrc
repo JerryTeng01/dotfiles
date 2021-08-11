@@ -46,6 +46,9 @@ set visualbell
 set t_vb=
 filetype indent plugin on
 
+set undofile " persistent undo between sessions
+set undodir=~/.vim/undodir
+
 " linters
 let g:ale_linters = {'python': ['flake8', 'pylint']}
 
