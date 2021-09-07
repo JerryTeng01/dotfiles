@@ -31,6 +31,7 @@
     "markdown.preview.fontSize": 20,
     "workbench.editor.closeOnFileDelete": true,
     "explorer.confirmDragAndDrop": false,
-    "workbench.colorTheme": "Gruvbox Material Dark",
-    "debug.onTaskErrors": "showErrors"
+    "debug.onTaskErrors": "showErrors",
+    "keyboard.dispatch": "keyCode",
+    "workbench.colorTheme": "Gruvbox Dark Hard"
 }
