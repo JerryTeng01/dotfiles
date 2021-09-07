@@ -11,18 +11,18 @@ do
     fi
 done
 
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
 packages=(
     gdb
     git 
     htop
     neofetch
-    python
-    rofi
     tmux
     wget
     vim
     zsh
-    node
 )
 
 ${package_manager} ${packages[@]}
