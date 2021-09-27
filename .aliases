@@ -19,3 +19,4 @@ alias ssh-docker='ssh zxt180005@syssec-docker0.utdallas.edu'
 alias ctfd='ssh ubuntu@ctf.utdcsg.me'
 
 alias lazygit='git add . && git commit -m "." && git push'
+alias thm='sudo openvpn ~/sec/thm/thm.ovpn'
