@@ -27,9 +27,9 @@ fi
 files=(
     ".aliases" 
     ".functions" 
-    ".gitconfig" 
     ".p10k.zsh"
     ".vimrc" 
+    ".xinitrc"
     ".zshenv" 
     ".zshrc"
 )
