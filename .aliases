@@ -10,3 +10,12 @@ alias ipython='python3 -m IPython'
 alias hc='hashcat'
 alias ms='msfconsole -q'
 alias hashid='python3 ~/tools/hash-id.py'
+
+alias ctf1='ssh zxt180005@ctf-vm1.utdallas.edu'
+alias ctf2='ssh zxt180005@ctf-vm2.utdallas.edu'
+alias ctf3='ssh zxt180005@ctf-vm3.utdallas.edu'
+
+alias ssh-docker='ssh zxt180005@syssec-docker0.utdallas.edu'
+alias ctfd='ssh ubuntu@ctf.utdcsg.me'
+
+alias lazygit='git add . && git commit -m "." && git push'

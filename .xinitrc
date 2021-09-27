@@ -1,2 +1,2 @@
 setxkbmap -option caps:escape
-xset r rate 200 25
+xset r rate 300 25
