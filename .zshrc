@@ -24,5 +24,8 @@ for file in ${files[@]}; do
     source $HOME/$file 2> /dev/null
 done
 
+eval "$(pyenv virtualenv-init -)"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
