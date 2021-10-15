@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# additional tools for binaries
+#pip3 install capstone unicorn keystone-engine ropper
+
 # gef
 #if [ ! -f !/.gdbinit-gef.py ]; then
 #    wget -O ~/.gdbinit-gef.py -q https://github.com/hugsy/gef/raw/master/gef.py
@@ -24,9 +27,9 @@ fi
 files=(
     ".aliases" 
     ".functions" 
-    ".gitconfig" 
     ".p10k.zsh"
     ".vimrc" 
+    ".xinitrc"
     ".zshenv" 
     ".zshrc"
 )
