@@ -1,19 +1,7 @@
 #!/bin/bash
 
-# additional tools for binaries
-#pip3 install capstone unicorn keystone-engine ropper
-
-# gef
-#if [ ! -f !/.gdbinit-gef.py ]; then
-#    wget -O ~/.gdbinit-gef.py -q https://github.com/hugsy/gef/raw/master/gef.py
-#fi
-
 if [ ! -d ~/.oh-my-zsh ]; then
     curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-fi
-
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k ]; then
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 fi
 
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
@@ -24,21 +12,32 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
+if [ ! -f $HOME/.fonts/SourceCodePro-Medium.otf ]; then
+    mkdir /tmp/adodefont
+    cd /tmp/adodefont
+    wget https://github.com/adobe-fonts/source-code-pro/archive/1.017R.zip
+    unzip 1.017R.zip
+    mkdir -p ~/.fonts
+    cp source-code-pro-1.017R/OTF/*.otf ~/.fonts/
+    fc-cache -f -v
+    cd -
+fi
+
 files=(
     ".aliases" 
     ".functions" 
-    ".p10k.zsh"
     ".vimrc" 
-    ".xinitrc"
     ".zshenv" 
     ".zshrc"
 )
 
 for file in ${files[@]}; do
-    ln -sf $(pwd)/$file $HOME
+    ln -sf $HOME/dotfiles/$file $HOME
 done
 
-[ ! -d $HOME/.vim/undodir ] && mkdir $HOME/.vim/undodir
+if [ ! -d $HOME/.vim/undodir ]; then
+    mkdir $HOME/.vim/undodir
+fi
 
 #[ ! -d $HOME/.config ] && mkdir $HOME/.config
 #[ ! -d $HOME/.config/VSCodium/User ] && mkdir -p $HOME/.config/VSCodium/User

@@ -15,7 +15,7 @@ alias sublister='sublist3r'
 
 alias ctf='ssh zxt180005@ctf-vm1.utdallas.edu'
 alias pctf='ssh zxt180005@syssec.org -p 2201'
-alias arm='ssh zxt180005@syssec.org -p 2245'
+alias arm='ssh zxt180005@syssec.org -p 2247'
 
 alias ssh-docker='ssh -i ~/.ssh/id_ed25519 zxt180005@syssec-docker0.utdallas.edu'
 alias pyc-docker='docker run -h pyc-v0.14 -v /home/jteng/projects/train:/pyc_research -it syssecutd/pyc:latest'
