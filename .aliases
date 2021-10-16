@@ -10,6 +10,7 @@ alias ipython='python3 -m IPython'
 alias hc='hashcat'
 alias ms='msfconsole -q'
 alias hashid='python3 ~/tools/hash-id.py'
+alias sublister='sublist3r'
 
 alias ctf1='ssh zxt180005@ctf-vm1.utdallas.edu'
 alias ctf2='ssh zxt180005@ctf-vm2.utdallas.edu'
