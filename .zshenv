@@ -5,7 +5,7 @@ export GO_HOME=/usr/local/go
 export GOPATH=~/code/go
 export PIN_ROOT=/opt/pin
 export PIN_HOME=/opt/pin
-export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_INSTALL/bin:$DENO_INSTALL/bin:$GO_HOME/bin:$GOPATH/bin:$PIN_ROOT:$PIN_HOME
+export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_INSTALL/bin:$DENO_INSTALL/bin:$GO_HOME/bin:$GOPATH/bin:$PIN_ROOT:$PIN_HOME:$HOME/.local/bin:$HOME/.pyenv/bin
 
 if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
