@@ -16,6 +16,7 @@ packages=(
     git 
     htop
     neofetch
+    python-is-python3
     tmux
     wget
     vim
