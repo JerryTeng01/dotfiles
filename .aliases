@@ -9,17 +9,9 @@ alias tmux='tmux -2'
 alias gdb='gdb -q'
 alias ipython='python3 -m IPython'
 alias hc='hashcat'
-alias ms='msfconsole -q'
+alias msf='msfconsole -q'
 alias hashid='python3 ~/tools/hash-id.py'
 alias sublister='sublist3r'
 
-alias ctf='ssh zxt180005@ctf-vm1.utdallas.edu'
-alias pctf='ssh zxt180005@syssec.org -p 2201'
-alias arm='ssh zxt180005@syssec.org -p 2247'
-
-alias ssh-docker='ssh -i ~/.ssh/id_ed25519 zxt180005@syssec-docker0.utdallas.edu'
-alias pyc-docker='docker run -h pyc-v0.14 -v /home/jteng/projects/train:/pyc_research -it syssecutd/pyc:latest'
-alias ctfd='ssh ubuntu@ctf.utdcsg.me'
-
 alias lazygit='git add . && git commit -m "." && git push'
-alias thm='sudo openvpn ~/sec/thm/thm.ovpn'
+alias xclip="xclip -selection c"

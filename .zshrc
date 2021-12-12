@@ -1,11 +1,13 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="agnoster"
+ZSH_THEME="cloud"
 
 plugins=(
-  git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+    docker
+    docker-compose
+    git
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 # use vim bindings for zsh
