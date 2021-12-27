@@ -13,7 +13,7 @@ alias msf='msfconsole -q'
 alias hashid='python3 ~/tools/hash-id.py'
 alias sublister='sublist3r'
 alias jetbrains='/opt/jetbrains/jetbrains-toolbox && disown'
-alias thmvpn='sudo openvpn thm.ovpn'
+alias tvpn='sudo tmux new -d -s vpn openvpn /opt/thm.ovpn'
 
 alias lazygit='git add . && git commit -m "." && git push'
 alias xclip="xclip -selection c"
