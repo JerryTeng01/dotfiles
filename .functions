@@ -1,3 +1,7 @@
 bandit () {
     ssh bandit$1@bandit.labs.overthewire.org -p 2220
 }
+
+target () {
+    IP=$1 tmux
+}
