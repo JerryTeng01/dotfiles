@@ -1,38 +1,17 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 import os
 import subprocess
 
-from typing import List  # noqa: F401
+from typing import List 
 
 from libqtile import qtile
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+from gruvbox.gruvbox import *
+
+triangle = "◀"
+slash = ""
+separator = slash
 
 mod = "mod4"
 terminal = "alacritty"
@@ -45,8 +24,6 @@ keys = [
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
 
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
     Key([mod, "control"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
     Key([mod, "control"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "control"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
@@ -76,8 +53,15 @@ keys = [
     Key([mod], "slash", lazy.spawn("rofi -theme gruvbox-dark-soft -show drun"), desc="Spawn rofi drun"),
     Key([mod], "f", lazy.spawn("rofi -theme gruvbox-dark-soft -show file-browser"), desc="Spawn rofi file-browser"),
 
-    Key([mod], "b", lazy.spawn("brave"), desc="Launch Brave"),
-    Key([mod], "n", lazy.spawn("brave --incognito"), desc="Launch Brave"),
+    Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
+    Key([mod], "n", lazy.spawn("firefox --private"), desc="Launch Firefox"),
+
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -s set +10%")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -s set 10%-")),
+
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 10%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 10%-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -c 0 -q set Master toggle")),
 ]
 
 group_names = [
@@ -85,6 +69,7 @@ group_names = [
         ("1", {'layout': 'monadtall'}),
         ("2", {'layout': 'monadtall'}),
         ("3", {'layout': 'monadtall'}),
+        ("4", {'layout': 'monadtall'}),
 ]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -124,8 +109,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='Ubuntu Bold',
-    fontsize=12,
+    font='FiraCode',
+    fontsize=16,
     padding=5,
     background=colors["eerie_black"],
     foreground=colors["lavender_web"]
@@ -159,12 +144,56 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.Systray(),
+                widget.TextBox(
+                    text= 'vol:',
+                    background=yellow,
+                    foreground=white0,
+                    ),
+                widget.Volume(
+                    background=yellow,
+                    foreground=white0,
+                ),
+                widget.TextBox(
+                    padding=0,
+                    text= separator,
+                    foreground=green,
+                    background=yellow,
+                ),
+                widget.TextBox(
+                    text="bat:",
+                    background=green,
+                    foreground=white0,
+                ),
+                widget.Battery(
+                    format="{percent:2.0%}",
+                    low_percentage=0.2,
+                    #low_foreground=warning,
+                    background=green,
+                    foreground=white0,
+                ),
+                widget.TextBox(
+                    padding=0,
+                    text=separator,
+                    foreground=aqua,
+                    background=green,
+                ),
                 widget.Memory(
                     mouse_callbacks = {"Button1": lambda: qtile.cmd_spawn(terminal + " -e htop")}
                 ),
+                widget.TextBox(
+                    padding=0,
+                    text=separator,
+                    foreground=purple,
+                    background=blue,
+                ),
                 widget.Clock(
-                    format="%A, %B %d - %-I:%M %p"
+                    format="I:%M %p",
+                    background=purple,
+                    foreground=white0,
+                ),
+                widget.Systray(
+                    background=purple,
+                    icon_size=15,
                 ),
             ],
             24,
@@ -175,9 +204,9 @@ screens = [
 # Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
+        start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
+        start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
@@ -205,13 +234,4 @@ def autostart():
     home = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([home])
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
-#wmname = "LG3D"
 wmname = "qtile"

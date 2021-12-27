@@ -29,33 +29,26 @@ files=(
     ".vimrc" 
     ".zshenv" 
     ".zshrc"
+    ".xinitrc"
+    ".xprofile"
 )
 
-for file in ${files[@]}; do
-    ln -sf $HOME/dotfiles/$file $HOME
+for file in ${files[@]}; do ln -sf $HOME/dotfiles/$file $HOME
 done
 
 if [ ! -d $HOME/.vim/undodir ]; then
-    mkdir $HOME/.vim/undodir
+    mkdir -p $HOME/.vim/undodir
 fi
 
-#[ ! -d $HOME/.config ] && mkdir $HOME/.config
-#[ ! -d $HOME/.config/VSCodium/User ] && mkdir -p $HOME/.config/VSCodium/User
+[ -d $HOME/.config/alacritty ] && rm -fr $HOME/.config/alacritty
+ln -sf $(pwd)/config/alacritty $HOME/.config/alacritty
 
-#ln -sf $(pwd)/config/VSCodium/product.json $HOME/.config/VSCodium/product.json
-#ln -sf $(pwd)/config/VSCodium/User/settings.json $HOME/.config/VSCodium/User/settings.json
+[ -d $HOME/.config/nitrogen ] && rm -fr $HOME/.config/nitrogen
+ln -sf $(pwd)/config/nitrogen $HOME/.config/nitrogen
 
-#[ -d $HOME/.config/alacritty ] && rm -fr $HOME/.config/alacritty
-#ln -sf $(pwd)/config/alacritty $HOME/.config/alacritty
+[ -d $HOME/.config/picom ] && rm -fr $HOME/.config/picom
+ln -sf $(pwd)/config/picom $HOME/.config/picom
 
-#[ -d $HOME/.config/nitrogen ] && rm -fr $HOME/.config/nitrogen
-#ln -sf $(pwd)/config/nitrogen $HOME/.config/nitrogen
+[ -d $HOME/.config/qtile ] && rm -fr $HOME/.config/qtile
+ln -sf $(pwd)/config/qtile $HOME/.config/qtile
 
-#[ -d $HOME/.config/picom ] && rm -fr $HOME/.config/picom
-#ln -sf $(pwd)/config/picom $HOME/.config/picom
-
-#[ -d $HOME/.config/qtile ] && rm -fr $HOME/.config/qtile
-#ln -sf $(pwd)/config/qtile $HOME/.config/qtile
-
-#[ -d $HOME/.config/qtile ] && rm -fr $HOME/.config/qtile
-#ln -sf $(pwd)/config/qtile $HOME/.config/qtile
