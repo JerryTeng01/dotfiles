@@ -1,4 +1,4 @@
-alias zshconfig="vim ~/.zshrc"
+alias zshconfig='vim ~/.zshrc'
 alias vimconfig='vim ~/.vimrc'
 
 alias ghidra='/opt/ghidra/ghidraRun && exit' 
@@ -16,5 +16,9 @@ alias jetbrains='/opt/jetbrains/jetbrains-toolbox && disown'
 alias tvpn='sudo tmux new -d -s vpn openvpn /opt/thm.ovpn'
 
 alias lazygit='git add . && git commit -m "." && git push'
-alias xclip="xclip -selection c"
-alias sound="alsamixer"
+alias xclip='xclip -selection c'
+alias sound='alsamixer'
+
+alias ad0='ssh zxt180005@syssec-adwaith0 -p 2223'
+alias ad1='ssh zxt180005@syssec-adwaith1 -p 2222'
+alias ad2='ssh zxt180005@syssec-adwaith2 -p 2225'
