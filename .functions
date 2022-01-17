@@ -5,3 +5,13 @@ bandit () {
 target () {
     IP=$1 tmux
 }
+
+b64d () {
+    echo $1 | base64 -d
+}
+
+dis () {
+    for file in "$@"; do
+        objdump -D $file -M intel > $file.dis
+    done
+}

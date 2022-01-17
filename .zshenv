@@ -11,3 +11,4 @@ export TERM=xterm-256color
 export EDITOR="vim"
 
 export PATH=$PATH:$JAVA_HOME/bin:$GO_HOME/bin:$GOPATH/bin:~/.local/bin
+. "$HOME/.cargo/env"

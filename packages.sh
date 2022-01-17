@@ -50,3 +50,4 @@ fi
 npm install -g ${npm_packages[@]}
 
 sudo tlp start
+

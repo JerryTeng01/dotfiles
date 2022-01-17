@@ -23,9 +23,12 @@ if [ ! -f $HOME/.fonts/SourceCodePro-Medium.otf ]; then
     cd -
 fi
 
+wget -O ~/.gdbinit-gef.py -q http://gef.blah.cat/py
+
 files=(
     ".aliases" 
     ".functions" 
+    ".gdbinit"
     ".vimrc" 
     ".zshenv" 
     ".zshrc"
@@ -33,7 +36,7 @@ files=(
     ".xprofile"
 )
 
-for file in ${files[@]}; do ln -sf $HOME/dotfiles/$file $HOME
+for file in ${files[@]}; do ln -sfv $HOME/dotfiles/$file $HOME
 done
 
 if [ ! -d $HOME/.vim/undodir ]; then
