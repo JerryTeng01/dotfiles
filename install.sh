@@ -29,11 +29,12 @@ files=(
     ".aliases" 
     ".functions" 
     ".gdbinit"
+    ".tmux.conf"
     ".vimrc" 
-    ".zshenv" 
-    ".zshrc"
     ".xinitrc"
     ".xprofile"
+    ".zshenv" 
+    ".zshrc"
 )
 
 for file in ${files[@]}; do ln -sfv $HOME/dotfiles/$file $HOME
