@@ -24,3 +24,4 @@ for file in ${files[@]}; do
 done
 
 source $ZSH/oh-my-zsh.sh
+eval "$(pyenv init -)"

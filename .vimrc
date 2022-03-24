@@ -18,6 +18,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'fidian/hexmode'
 
 call plug#end()
 
@@ -47,6 +48,9 @@ set background=dark
 colorscheme gruvbox
 
 let g:rainbow_active = 1
+
+" files to open in hex mode
+let g:hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.pyc'
 
 " options
 set nu "rnu
