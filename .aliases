@@ -33,7 +33,7 @@ alias kali='~/code/dockers/kali/run.sh'
 alias bkali='docker build -f ~/code/dockers/kali/Dockerfile -t kali ~/code/dockers/kali'
 alias sectmp='cd ~/sec/tmp'
 
-alias dockerstopall='docker stop -f $(docker ps -aq)'
+alias dockerstopall='docker stop $(docker ps -aq)'
 alias dockerrmall='docker rm -f $(docker ps -aq)'
 alias dockerrmiall='docker rmi -f $(docker images -aq)'
 alias dockerdel='dockerstopall || true && dockerrmall || true && dockerrmiall || true'
