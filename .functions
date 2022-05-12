@@ -22,25 +22,25 @@ cf () {
 
 rcopy_from_drive () {
     for file in "$@"; do
-        rclone copy gdrive:$file ~/$file --exclude ".vscode/**" -v
+        rclone copy gdrive:$file ~/$file --exclude-from ~/.rclone-filter --drive-skip-gdocs -v
     done
 }
 
 rcopy_to_drive () {
     for file in "$@"; do
-        rclone copy ~/$file gdrive:$file --exclude ".vscode/**" -v
+        rclone copy ~/$file gdrive:$file --exclude-from ~/.rclone-filter --drive-skip-gdocs -v
     done
 }
 
 rsync_from_drive () {
     for file in "$@"; do
-        rclone sync -i gdrive:$file ~/$file --exclude ".vscode/**" -v
+        rclone sync -i gdrive:$file ~/$file --exclude-from ~/.rclone-filter --drive-skip-gdocs -v
     done
 }
 
 rsync_to_drive () {
     for file in "$@"; do
-        rclone sync -i ~/$file gdrive:$file --exclude ".vscode/**" -v
+        rclone sync -i ~/$file gdrive:$file --exclude-from ~/.rclone-filter --drive-skip-gdocs -v
     done
 }
 

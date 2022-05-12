@@ -28,7 +28,9 @@ wget -O ~/.gdbinit-gef.py -q http://gef.blah.cat/py
 files=(
     ".aliases" 
     ".functions" 
+    ".gitconfig"
     ".gdbinit"
+    ".rclone-filter"
     ".tmux.conf"
     ".vimrc" 
     ".xinitrc"

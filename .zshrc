@@ -1,7 +1,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-#ZSH_THEME="agnoster"
-ZSH_THEME="lambda"
+ZSH_THEME="agnoster"
+#ZSH_THEME="cloud"
+#ZSH_THEME="lambda"
 
 plugins=(
     docker
@@ -26,3 +27,5 @@ done
 
 source $ZSH/oh-my-zsh.sh
 eval "$(pyenv init -)"
+
+export PATH="/home/jteng/code/ARX-3.9.0/bin:$PATH"

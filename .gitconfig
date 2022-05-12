@@ -1,3 +1,7 @@
 [user]
 	email = zuyuangteng@gmail.com
 	name = Jerry Teng
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /home/jteng/.gitignore

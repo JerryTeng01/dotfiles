@@ -1,0 +1,8 @@
+venv/**
+.vscode/**
+.git/**
+rockyou.txt
+*.zip
+*.DS_Store
+.~lock*
+.idea/**
