@@ -18,6 +18,3 @@ export EDITOR="vim"
 
 export PATH=$PYENV/bin:$JAVA_HOME/bin:$GO_HOME/bin:$GOPATH/bin:$MAVEN_HOME/bin:~/.local/bin:$PATH
 
-. "$HOME/.cargo/env"
-
-eval "$(pyenv init --path)"

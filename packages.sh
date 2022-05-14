@@ -18,17 +18,12 @@ packages=(
     python-is-python3
     python3-venv
     python3-pip
-    solaar
     tlp
     tlp-rdw
     tmux
     wget
     vim
     zsh
-)
-
-npm_packages=(
-    @bitwarden/cli
 )
 
 ${package_manager} ${packages[@]}
@@ -47,7 +42,5 @@ if [ $? != 0  ]; then
     sudo apt install -y spotify-client
 fi
 
-npm install -g ${npm_packages[@]}
-
-sudo tlp start
-
+tlp start
+systemctl enable tlp.service
