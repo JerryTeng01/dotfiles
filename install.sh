@@ -31,6 +31,7 @@ files=(
     ".gitconfig"
     ".gdbinit"
     ".rclone-filter"
+    ".themes"
     ".tmux.conf"
     ".vimrc" 
     ".xinitrc"
