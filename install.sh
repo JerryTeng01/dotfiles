@@ -28,7 +28,6 @@ files=(
     ".aliases"
     ".functions"
     ".gitconfig"
-    ".themes"
     ".tmux.conf"
     ".vimrc"
     ".zshenv"
