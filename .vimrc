@@ -8,17 +8,14 @@ endif
 " plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'wakatime/vim-wakatime'
 Plug 'frazrepo/vim-rainbow'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jiangmiao/auto-pairs'
+Plug 'LunarWatcher/auto-pairs'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'fidian/hexmode'
 
 call plug#end()
 
@@ -32,14 +29,14 @@ if !exists('g:airline_symbols')
 endif
 
 " powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.dirty='⚡'
 
 " colors
@@ -49,9 +46,6 @@ colorscheme gruvbox
 
 let g:rainbow_active = 1
 
-" files to open in hex mode
-let g:hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.pyc'
-
 " options
 set nu "rnu
 set autoindent
@@ -59,13 +53,11 @@ set smartindent
 set clipboard=unnamed
 set ts=4 sw=4 sts=4 et
 syntax on
-set autoindent
 set cursorline
 set showmatch
 set nobackup
 set swapfile
 set dir=/tmp
-set noeol
 set ignorecase
 set smartcase
 set visualbell
