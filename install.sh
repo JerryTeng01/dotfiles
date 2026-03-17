@@ -12,14 +12,18 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
-if [ ! -f "$HOME/Library/Fonts/SourceCodePro-Medium.otf" ]; then
-    mkdir /tmp/adodefont
-    curl -fLo /tmp/adodefont/SourceCodePro.zip https://github.com/adobe-fonts/source-code-pro/releases/latest/download/OTF-source-code-pro.zip
-    unzip /tmp/adodefont/SourceCodePro.zip -d /tmp/adodefont/
-    mkdir -p ~/Library/Fonts
-    cp /tmp/adodefont/OTF/*.otf ~/Library/Fonts/
-    rm -rf /tmp/adodefont
-fi
+fonts=(
+    font-source-code-pro
+    font-hack
+)
+for font in "${fonts[@]}"; do
+    if brew list --cask "$font" &>/dev/null; then
+        echo "✓ $font"
+    else
+        echo "Installing $font..."
+        brew install --cask "$font"
+    fi
+done
 
 files=(
     ".aliases"
