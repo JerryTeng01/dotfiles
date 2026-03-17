@@ -14,7 +14,6 @@ fi
 
 fonts=(
     font-source-code-pro
-    font-hack
 )
 for font in "${fonts[@]}"; do
     if brew list --cask "$font" &>/dev/null; then
@@ -42,6 +41,3 @@ done
 if [ ! -d $HOME/.vim/undodir ]; then
     mkdir -p $HOME/.vim/undodir
 fi
-
-[ -d $HOME/.config/alacritty ] && rm -fr $HOME/.config/alacritty
-ln -sf $(pwd)/config/alacritty $HOME/.config/alacritty
