@@ -3,5 +3,7 @@
 	name = Jerry Teng
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true
 [core]
-	excludesfile = /home/jteng/.gitignore
+	excludesfile = ~/.gitignore

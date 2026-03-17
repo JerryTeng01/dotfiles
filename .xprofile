@@ -1,3 +1,0 @@
-#!/bin/sh
-setxkbmap -option caps:escape
-#xinput set-prop 12 311 1

@@ -1,1 +1,0 @@
-choco install zoom microsoft-teams obs-studio docker-desktop discord autohotkey greenshot powertoys bitwarden bitwarden-cli 7zip git logitech-options notion vmwareworkstation docker-desktop firefox slack dropbox sourcecodepro openjdk11 vscode --params "/NoDesktopIcon"
