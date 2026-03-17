@@ -15,7 +15,14 @@ packages=(
     zsh
 )
 
-brew install ${packages[@]}
+for pkg in "${packages[@]}"; do
+    if brew list --formula "$pkg" &>/dev/null; then
+        echo "✓ $pkg"
+    else
+        echo "Installing $pkg..."
+        brew install "$pkg"
+    fi
+done
 
 if ! command -v node &>/dev/null; then
     brew install node@22
