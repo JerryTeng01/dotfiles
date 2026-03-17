@@ -19,9 +19,9 @@ brew install ${packages[@]}
 
 if ! command -v node &>/dev/null; then
     brew install node@22
-    brew link node@22
+    brew link --overwrite node@22
 fi
 
-if ! brew list --cask spotify &>/dev/null; then
+if [ ! -d "/Applications/Spotify.app" ]; then
     brew install --cask spotify
 fi
