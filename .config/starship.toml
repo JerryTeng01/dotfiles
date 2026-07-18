@@ -1,5 +1,12 @@
 add_newline = false
-format = "$directory$git_branch$git_status$nodejs$python$status$cmd_duration$character"
+format = "${custom.cat}$directory$git_branch$git_status$nodejs$python$status$cmd_duration$character"
+
+[custom.cat]
+command = '''od -An -N4 -tu4 /dev/urandom | awk '{ cats[0]="🐱"; cats[1]="😺"; cats[2]="😸"; cats[3]="😻"; cats[4]="😼"; cats[5]="😽"; cats[6]="🙀"; cats[7]="🐈"; print cats[$1 % 8] }' '''
+when = true
+format = "[$output]($style) "
+style = "bold yellow"
+shell = ["sh"]
 
 [directory]
 style = "bold blue"
