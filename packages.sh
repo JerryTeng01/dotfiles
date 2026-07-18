@@ -9,14 +9,14 @@ usage() {
   cat <<'EOF'
 Usage: ./packages.sh [--update]
 
-Install the supported platform's packages. Supported systems are macOS and
-Ubuntu 24.04. Set DOTFILES_OS_RELEASE_FILE or DOTFILES_ARCH when testing
-detection without changing the host.
+Install the supported platform's packages. Supported systems are macOS,
+Ubuntu 24.04, and Debian 12 or newer. Set DOTFILES_OS_RELEASE_FILE or
+DOTFILES_ARCH when testing detection without changing the host.
 EOF
 }
 
 detect_platform() {
-  local kernel os_release id version_id
+  local kernel os_release id version_id version_major
   kernel=${DOTFILES_UNAME_S:-$(uname -s)}
 
   if [[ "$kernel" == Darwin ]]; then
@@ -28,7 +28,7 @@ detect_platform() {
   if [[ "$kernel" == Linux ]]; then
     os_release=${DOTFILES_OS_RELEASE_FILE:-/etc/os-release}
     if [[ ! -r "$os_release" ]]; then
-      printf 'Unsupported Linux system: %s is unavailable. Ubuntu 24.04 is required.\n' "$os_release" >&2
+      printf 'Unsupported Linux system: %s is unavailable. Use Ubuntu 24.04 or Debian 12+.\n' "$os_release" >&2
       return 1
     fi
     id=$(sed -n 's/^ID=//p' "$os_release" | tr -d '"')
@@ -38,11 +38,17 @@ detect_platform() {
       export DOTFILES_PLATFORM
       return
     fi
-    printf 'Unsupported Linux distribution: %s %s. Ubuntu 24.04 is required.\n' "$id" "$version_id" >&2
+    version_major=${version_id%%.*}
+    if [[ "$id" == debian && "$version_major" =~ ^[0-9]+$ ]] && (( version_major >= 12 )); then
+      DOTFILES_PLATFORM=debian
+      export DOTFILES_PLATFORM
+      return
+    fi
+    printf 'Unsupported Linux distribution: %s %s. Use Ubuntu 24.04 or Debian 12+.\n' "$id" "$version_id" >&2
     return 1
   fi
 
-  printf 'Unsupported operating system: %s. Use macOS or Ubuntu 24.04.\n' "$kernel" >&2
+  printf 'Unsupported operating system: %s. Use macOS, Ubuntu 24.04, or Debian 12+.\n' "$kernel" >&2
   return 1
 }
 
@@ -51,7 +57,7 @@ nvim_asset_for_arch() {
     x86_64|amd64) printf '%s\n' nvim-linux-x86_64.tar.gz ;;
     arm64|aarch64) printf '%s\n' nvim-linux-arm64.tar.gz ;;
     *)
-      printf 'Unsupported Ubuntu architecture: %s. Use x86_64 or arm64.\n' "${DOTFILES_ARCH:-$(uname -m)}" >&2
+      printf 'Unsupported Linux architecture: %s. Use x86_64 or arm64.\n' "${DOTFILES_ARCH:-$(uname -m)}" >&2
       return 1
       ;;
   esac
@@ -150,7 +156,7 @@ version_at_least() {
   [[ "$first" == "$required" ]]
 }
 
-install_neovim_ubuntu() (
+install_neovim_linux() (
   local install_root="$HOME/.local/opt/nvim"
   local installed_version="" asset release_json tag digest url archive staging
 
@@ -206,7 +212,7 @@ expose_user_command() {
   ln -s "$source" "$target"
 }
 
-install_ubuntu_packages() {
+install_apt_packages() {
   local -a bootstrap=(ca-certificates curl gnupg)
   local -a packages=(
     build-essential cmake fd-find git htop jq pkg-config ripgrep tar tmux unzip
@@ -226,7 +232,7 @@ install_ubuntu_packages() {
     run_as_root apt-get update
     run_as_root env DEBIAN_FRONTEND=noninteractive apt-get install -y --only-upgrade "${packages[@]}" mise
   fi
-  install_neovim_ubuntu
+  install_neovim_linux
   expose_user_command "$(command -v fdfind)" "$HOME/.local/bin/fd"
   expose_user_command "$HOME/.local/opt/nvim/bin/nvim" "$HOME/.local/bin/nvim"
 }
@@ -244,7 +250,7 @@ main() {
   detect_platform
   case "$DOTFILES_PLATFORM" in
     macos) install_brew_packages ;;
-    ubuntu) install_ubuntu_packages ;;
+    ubuntu|debian) install_apt_packages ;;
   esac
 }
 

@@ -8,10 +8,11 @@ Lean, cross-platform shell and editor configuration built around native Zsh,
 
 - macOS on Intel or Apple Silicon, using Homebrew
 - Ubuntu 24.04 on `x86_64` or `arm64`, using apt
+- Debian 12 or newer on `x86_64` or `arm64`, using apt
 
-Other Linux distributions and older Ubuntu releases exit without making
-changes. The installer may request `sudo` on Ubuntu for apt and repository
-setup. Neovim and mise runtimes remain user-local.
+Other Linux distributions, older Ubuntu releases, and Debian 11 or older exit
+without making changes. The installer may request `sudo` on apt-based systems
+for package and repository setup. Neovim and mise runtimes remain user-local.
 
 ## Install
 
@@ -37,7 +38,7 @@ rm -rf ~/.oh-my-zsh
 
 ## Updates
 
-Refresh system packages, the stable Ubuntu Neovim tarball, and mise tools with:
+Refresh system packages, the stable Linux Neovim tarball, and mise tools with:
 
 ```sh
 cd ~/code/dotfiles
@@ -49,11 +50,12 @@ Projects can override the global Node 24 and Python 3.14 defaults with their
 own `mise.toml`. Plugin versions are recorded in Neovim's `lazy-lock.json`;
 update them intentionally from `:Lazy` and commit the changed lock file.
 
-## Ubuntu over SSH and Codex
+## Linux over SSH and Codex
 
-The Ubuntu installation is suitable for a headless SSH host. Configure your
-local terminal to use a Nerd Font for icons; no font is installed on the
-server. JetBrains Mono Nerd Font is installed automatically on macOS.
+The Ubuntu and Debian installations are suitable for a headless SSH host.
+Configure your local terminal to use a Nerd Font for icons; no font is
+installed on the server. JetBrains Mono Nerd Font is installed automatically
+on macOS.
 
 Clone the repository on the remote host, run `./install.sh`, and reconnect (or
 run `exec zsh`). Codex can then be launched inside a project normally. Keep
@@ -67,7 +69,7 @@ codex
 
 ## Neovim
 
-Ubuntu receives the latest stable official Neovim tarball under
+Ubuntu and Debian receive the latest stable official Neovim tarball under
 `~/.local/opt/nvim`; its GitHub-published SHA-256 digest is verified before it
 is installed and `~/.local/bin/nvim` exposes it. macOS uses Homebrew. LazyVim
 requires Neovim 0.11.2 or newer and enables its Python language extra, Gruvbox,

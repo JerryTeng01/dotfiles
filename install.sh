@@ -11,7 +11,7 @@ usage() {
 Usage: ./install.sh [--update]
 
 Install packages and link these dotfiles. --update also refreshes installed
-packages, the Ubuntu Neovim release, and mise-managed tools.
+packages, the Linux Neovim release, and mise-managed tools.
 EOF
 }
 
@@ -79,8 +79,8 @@ main() {
   if [[ $(uname -s) == Darwin ]]; then
     DOTFILES_PLATFORM=macos
   else
-    # packages.sh has already rejected every Linux platform except Ubuntu 24.04.
-    DOTFILES_PLATFORM=ubuntu
+    # packages.sh has already validated the Linux distribution and release.
+    DOTFILES_PLATFORM=$(sed -n 's/^ID=//p' /etc/os-release | tr -d '"')
   fi
   export DOTFILES_PLATFORM
 
@@ -94,14 +94,14 @@ main() {
   remove_legacy_link "$HOME/.vimrc"
   remove_legacy_link "$HOME/.tmux.conf"
 
-  if [[ "$DOTFILES_PLATFORM" == ubuntu ]] && ! command -v fd >/dev/null 2>&1; then
+  if [[ "$DOTFILES_PLATFORM" != macos ]] && ! command -v fd >/dev/null 2>&1; then
     fdfind_path=$(command -v fdfind || true)
     if [[ -n "$fdfind_path" ]]; then
       ensure_link "$fdfind_path" "$HOME/.local/bin/fd"
     fi
   fi
 
-  if [[ "$DOTFILES_PLATFORM" == ubuntu ]]; then
+  if [[ "$DOTFILES_PLATFORM" != macos ]]; then
     ensure_link "$HOME/.local/opt/nvim/bin/nvim" "$HOME/.local/bin/nvim"
   fi
 
