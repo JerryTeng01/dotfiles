@@ -1,18 +1,11 @@
-alias zshconfig='vim ~/.zshrc'
-alias vimconfig='vim ~/.vimrc'
+alias zshconfig='${EDITOR:-nvim} "$HOME/.zshrc"'
+alias nvimconfig='${EDITOR:-nvim} "$HOME/.config/nvim"'
 
-alias ve='python3 -m venv ./venv'
-alias va='source ./venv/bin/activate'
-alias tmux='tmux -2'
+alias ve='python3 -m venv "./venv"'
+alias va='source "./venv/bin/activate"'
 alias ipython='jupyter console'
-alias hvim='vim -b'
 
-alias lazygit='git add . && git commit -m "." && git push'
-alias xclip='pbcopy'
-
-alias jetbrains='open -a "JetBrains Toolbox"'
-
-alias dockerstopall='docker stop $(docker ps -aq)'
-alias dockerrmall='docker rm -f $(docker ps -aq)'
-alias dockerrmiall='docker rmi -f $(docker images -aq)'
-alias dockerdel='dockerstopall || true && dockerrmall || true && dockerrmiall || true'
+if [[ "$(uname -s)" == Darwin ]]; then
+  alias xclip=pbcopy
+  alias jetbrains='open -a "JetBrains Toolbox"'
+fi

@@ -1,40 +1,60 @@
-export ZSH="$HOME/.oh-my-zsh"
+# History
+typeset -g ZDOTDIR=${ZDOTDIR:-$HOME}
+typeset -g HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history
+mkdir -p "${HISTFILE:h}"
+HISTSIZE=50000
+SAVEHIST=10000
+setopt append_history extended_history hist_expire_dups_first hist_ignore_dups
+setopt hist_reduce_blanks share_history
 
-ZSH_THEME="agnoster"
-# ZSH_THEME="cloud"
-#ZSH_THEME="lambda"
+# Completion
+autoload -Uz compinit
+zcompdump=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
+mkdir -p "${zcompdump:h}"
+compinit -d "$zcompdump"
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completion"
+mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completion"
 
-plugins=(
-    git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-
-# use vim bindings for zsh
+# Vim-style command-line editing
 bindkey -v
+KEYTIMEOUT=1
 
-# automatically updates Oh My Zsh when a new version is available, without asking for confirmation
-zstyle ':omz:update' mode auto
-# shows only the git update process and a minimal success message
-zstyle ':omz:update' verbose minimal
-
-files=(
-    ".aliases"
-    ".functions"
-)
-
-for file in ${files[@]}; do
-    source $HOME/$file 2> /dev/null
+for file in "$HOME/.aliases" "$HOME/.functions"; do
+  [[ -r "$file" ]] && source "$file"
 done
+unset file
 
-source $ZSH/oh-my-zsh.sh
-
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "🐱 %n@%m"
-  else
-    prompt_segment black default "🐱"
+# Load package-manager plugins without assuming a Homebrew prefix.
+for plugin in \
+  /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh; do
+  if [[ -r "$plugin" ]]; then
+    source "$plugin"
+    break
   fi
-}
+done
+unset plugin
 
-DEFAULT_USER=$USER
+# Runtime activation must precede the prompt so it can report active versions.
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
+fi
+if (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
+fi
+
+# Syntax highlighting must be sourced after every widget and prompt integration.
+for plugin in \
+  /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+  /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
+  if [[ -r "$plugin" ]]; then
+    source "$plugin"
+    break
+  fi
+done
+unset plugin

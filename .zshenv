@@ -1,12 +1,6 @@
-# Go
-export GOPATH=$HOME/code/go
+export EDITOR=nvim
+export VISUAL=nvim
 
-# pyenv
-export PYENV="$HOME/.pyenv"
-
-# tmux color
-export TERM=xterm-256color
-
-export EDITOR="vim"
-
-export PATH=$PYENV/bin:$GOPATH/bin:~/.local/bin:$PATH
+typeset -U path PATH
+path=("$HOME/.local/bin" $path)
+export PATH

@@ -1,0 +1,39 @@
+add_newline = false
+format = "$directory$git_branch$git_status$nodejs$python$status$cmd_duration$character"
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = "git:"
+style = "bold purple"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "yellow"
+
+[nodejs]
+format = "[node $version]($style) "
+style = "green"
+
+[python]
+format = "[py $version]($style) "
+style = "yellow"
+
+[status]
+disabled = false
+format = "[$status]($style) "
+style = "bold red"
+
+[cmd_duration]
+min_time = 1000
+format = "[$duration]($style) "
+style = "dimmed white"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"

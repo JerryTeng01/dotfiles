@@ -1,3 +1,11 @@
-cf () {
-    cat $@ | pbcopy
+cf() {
+  if (( ! $+commands[pbcopy] )); then
+    print -u2 'cf: pbcopy is only available on macOS'
+    return 1
+  fi
+  if (( $# == 0 )); then
+    pbcopy
+  else
+    cat -- "$@" | pbcopy
+  fi
 }

@@ -1,0 +1,5 @@
+[tools]
+node = "24"
+python = "3.14"
+starship = "latest"
+tree-sitter = "latest"
