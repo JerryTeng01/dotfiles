@@ -9,3 +9,17 @@ cf() {
     cat -- "$@" | pbcopy
   fi
 }
+
+hermes-coder() {
+  local workdir=/opt/data/workspaces/repos
+
+  if (( $# > 1 )); then
+    print -u2 'usage: hermes-coder [repo-name]'
+    return 2
+  fi
+  if (( $# == 1 )); then
+    workdir="$workdir/$1"
+  fi
+
+  docker exec -it -w "$workdir" hermes hermes --profile coder
+}
