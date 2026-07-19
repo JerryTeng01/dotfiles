@@ -4,6 +4,7 @@ alias nvimconfig='${EDITOR:-nvim} "$HOME/.config/nvim"'
 alias ve='python3 -m venv "./venv"'
 alias va='source "./venv/bin/activate"'
 alias ipython='jupyter console'
+alias hermes-coder='docker exec -it -w /opt/data/workspaces/repos hermes hermes --profile coder'
 
 if [[ "$(uname -s)" == Darwin ]]; then
   alias xclip=pbcopy
