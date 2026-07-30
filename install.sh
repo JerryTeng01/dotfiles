@@ -61,7 +61,6 @@ remove_legacy_link() {
 
 main() {
   local arg file fdfind_path
-  local -a package_args=()
 
   for arg in "$@"; do
     case "$arg" in
@@ -72,9 +71,10 @@ main() {
   done
 
   if (( UPDATE )); then
-    package_args+=(--update)
+    "$DOTFILES_DIR/packages.sh" --update
+  else
+    "$DOTFILES_DIR/packages.sh"
   fi
-  "$DOTFILES_DIR/packages.sh" "${package_args[@]}"
 
   if [[ $(uname -s) == Darwin ]]; then
     DOTFILES_PLATFORM=macos
